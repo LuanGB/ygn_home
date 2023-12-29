@@ -79,6 +79,4 @@ test:
 #
 production:
   <<: *default
-  database: ygn_home_production
-  username: ygn_home
-  password: <%= ENV["YGN_HOME_DATABASE_PASSWORD"] %>
+  url: <%= ENV['DATABASE_URL'] %>
