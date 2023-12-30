@@ -1,6 +1,6 @@
 class Api::V1::NewsletterSubscriptionController < ApplicationController
   def create
-    @subscription = Subscription.new(subscription_params)
+    @subscription = NewsletterSubscription.new(subscription_params)
 
     respond_to do |format|
       if @subscription.save
@@ -16,6 +16,6 @@ class Api::V1::NewsletterSubscriptionController < ApplicationController
   private
 
   def subscription_params
-    params.require(:subscription).permit(:email)
+    params.require(:newsletter_subscription).permit(:email)
   end
 end
