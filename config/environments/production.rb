@@ -80,6 +80,7 @@ Rails.application.configure do
     address: 'smtp.gmail.com',
     port: 587,
     domain: 'yg.net.br',
+    host: "https://ygn-home.onrender.com",
     user_name: ENV['SMTP_GMAIL_USERNAME'],
     password: ENV['SMTP_GMAIL_PASSWORD'],
     authentication: 'plain',
