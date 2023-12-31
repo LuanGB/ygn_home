@@ -7,3 +7,9 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+
+require 'securerandom'
+
+password = ENV['ADMIN_DEFAULT_ACCOUNT_PASSWORD']
+
+AdminUser.create!(email: 'yggdrasilgeeknetwork@gmail.com', password: password, password_confirmation: password) unless AdminUser.find_by(email: 'yggdrasilgeeknetwork@gmail.com')
