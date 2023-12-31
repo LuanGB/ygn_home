@@ -73,8 +73,8 @@ Rails.application.configure do
   # config.active_job.queue_adapter = :resque
   # config.active_job.queue_name_prefix = "ygn_home_production"
 
+  config.action_mailer.default_url_options = { host: 'ygn-home.onrender.com' }
   config.action_mailer.perform_caching = false
-
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
     address: 'smtp.gmail.com',
@@ -82,12 +82,12 @@ Rails.application.configure do
     domain: 'yg.net.br',
     user_name: ENV['SMTP_GMAIL_USERNAME'],
     password: ENV['SMTP_GMAIL_PASSWORD'],
+    openssl_verify_mode: 'none',
     authentication: 'plain',
     enable_starttls: true,
     open_timeout: 5,
     read_timeout: 5
   }
-  config.action_mailer.default_url_options = { host: 'https://ygn-home.onrender.com' }
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
