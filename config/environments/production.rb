@@ -80,7 +80,6 @@ Rails.application.configure do
     address: 'smtp.gmail.com',
     port: 587,
     domain: 'yg.net.br',
-    host: 'https://ygn-home.onrender.com',
     user_name: ENV['SMTP_GMAIL_USERNAME'],
     password: ENV['SMTP_GMAIL_PASSWORD'],
     authentication: 'plain',
@@ -88,6 +87,7 @@ Rails.application.configure do
     open_timeout: 5,
     read_timeout: 5
   }
+  config.action_mailer.default_url_options = { :host => 'https://ygn-home.onrender.com' }
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
