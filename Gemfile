@@ -21,6 +21,8 @@ gem 'devise'
 gem 'draper'
 gem 'pundit'
 gem 'sassc-rails'
+gem 'active_admin_datetimepicker'
+gem 'activeadmin_quill_editor'
 
 group :development, :test do
   gem 'brakeman'
