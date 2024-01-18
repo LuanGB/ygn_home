@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Tags</h1>
+
+<div id="blog_tags">
+  <% @blog_tags.each do |blog_tag| %>
+    <%= render blog_tag %>
+    <p>
+      <%= link_to "Show this tag", blog_tag %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New tag", new_blog_tag_path %>
