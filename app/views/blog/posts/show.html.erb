@@ -1,10 +1,45 @@
-<p style="color: green"><%= notice %></p>
+<div class="col-lg-8">
+  <div class="nk-blog-post nk-blog-post-single">
+    <div class="nk-post-text mt-0">
+      <div class="nk-post-img">
+        <img src="assets/images/post-2.jpg" alt="Grab your sword and fight the Horde">
+      </div>
+      <div class="nk-gap-1"></div>
+      <!-- <h1 class="nk-post-title h4">Grab your sword and fight the Horde</h1> -->
+      <div class="nk-post-by">
+        <img src="assets/images/avatar-2.jpg" alt="Witch Murder" class="rounded-circle" width="35"> by <a href="#">Witch Murder</a> in Sep 5, 2018
 
-<%= render @blog_post %>
 
-<div>
-  <%= link_to "Edit this post", edit_blog_post_path(@blog_post) %> |
-  <%= link_to "Back to posts", blog_posts_path %>
+        <div class="nk-post-categories">
 
-  <%= button_to "Destroy this post", @blog_post, method: :delete %>
+          <span class="bg-main-1">Action</span>
+
+          <span class="bg-main-2">Adventure</span>
+
+        </div>
+
+      </div>
+      <div class="nk-gap"></div>
+      <div class="blog-post-container">
+        <%= @blog_post.html_safe_content %>
+      </div>
+
+      <div class="nk-gap"></div>
+      <div class="nk-post-share">
+        <span class="h5">Share Article:</span>
+
+        <ul class="nk-social-links-2">
+          <li><span class="nk-social-facebook" title="Share page on Facebook" data-share="facebook"><span class="fab fa-facebook"></span></span></li>
+          <li><span class="nk-social-google-plus" title="Share page on Google+" data-share="google-plus"><span class="fab fa-google-plus"></span></span></li>
+          <li><span class="nk-social-twitter" title="Share page on Twitter" data-share="twitter"><span class="fab fa-twitter"></span></span></li>
+          <li><span class="nk-social-pinterest" title="Share page on Pinterest" data-share="pinterest"><span class="fab fa-pinterest-p"></span></span></li>
+
+        </ul>
+      </div>
+    </div>
+    <div class="nk-gap-2"></div>
+
+    <%= render "blog/posts/similar_articles" %>
+    <%= render "blog/posts/comments" %>
+  </div>
 </div>

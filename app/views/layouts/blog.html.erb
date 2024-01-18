@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <title><%= page_config[:page_title] %></title>
+
+  <%= render "shared/meta" %>
+  <%= render "shared/styles" %>
+
+  <%= javascript_importmap_tags %>
+</head>
+<body>
+  <%= render "shared/header" %>
+  <%= render "shared/navbar_mobile" %>
+
+  <div class="nk-main">
+    <%= render "shared/breadcrumbs" %>
+    <div class="container">
+      <div class="row vertical-gap">
+        <%= yield %>
+        <%= render "blog/shared/sidebar" %>
+      </div>
+    </div>
+  </div>
+  <div class="nk-gap-2"></div>
+  <%= render "shared/footer" %>
+  <%= render "shared/page_background" %>
+  <%= render "shared/search_modal" %>
+  <%= render "shared/login_modal" %>
+  <%= render "shared/scripts" %>
+</body>
+</html>

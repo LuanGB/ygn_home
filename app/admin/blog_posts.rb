@@ -17,8 +17,12 @@ ActiveAdmin.register Blog::Post do
   
   permit_params :title, :published_at, :content
 
+  filter :title
+  filter :published_at
+  filter :created_at
+
   show do
-    simple_format blog_post.content.html_safe
+    simple_format blog_post.html_safe_content
   end
 
   index do
@@ -29,7 +33,7 @@ ActiveAdmin.register Blog::Post do
     actions
   end
 
-  form do |f|
+  form html: { :multipart => true } do |f|
     semantic_errors
     inputs "Details" do
       input :title

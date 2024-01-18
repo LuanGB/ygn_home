@@ -14,6 +14,7 @@ gem 'redis', '>= 4.0.1'
 gem 'sprockets-rails'
 gem 'stimulus-rails'
 gem 'turbo-rails'
+gem 'jquery-rails'
 
 gem 'activeadmin'
 gem 'cancancan'
@@ -23,6 +24,9 @@ gem 'pundit'
 gem 'sassc-rails'
 gem 'active_admin_datetimepicker'
 gem 'activeadmin_quill_editor'
+gem 'activeadmin_dark_color_scheme'
+
+gem 'image_processing'
 
 group :development, :test do
   gem 'brakeman'

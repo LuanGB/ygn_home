@@ -1,0 +1,48 @@
+<!-- HERO -->
+<div class="hero">
+  <!-- FRONT CONTENT -->
+  <div class="front-content">
+    <!-- CONTAINER MID -->
+    <div class="container-mid">
+      <%= image_tag("logo-white.png", class: "img-responsive logo", alt: "image", width: "200px") %>
+      <h1>Em Breve...</h1>
+      <p class="subline">Nós estamos trabalhando em nosso Website. Cadastre-se abaixo para receber atualizações.</p>
+      <div class="open-popup">Me Notifique!</div>
+    </div><!-- /CONTAINER MID -->
+    <!-- FOOTER -->
+    <div class="footer">
+      <p>© 2024 YGN | Design by <a target="_blank" href="https://templatefoundation.com">Template Foundation</a></p>
+    </div><!-- /FOOTER -->
+  </div><!-- /FRONT CONTENT -->
+
+  <!-- BACKGROUND CONTENT -->
+  <div class="background-content parallax-on">
+    <div class="background-overlay"></div>
+    <div class="background-img layer" data-depth="0.05"></div>
+  </div><!-- /BACKGROUND CONTENT -->
+</div><!-- /HERO -->
+
+
+<!-- POPUP ( SUBSCRIBE ) -->
+<div class="popup">
+  <!-- CARD -->
+  <div class="card">
+    <!-- CARD CLOSE BUTTON -->
+    <div class="close-popup close-button"></div>
+
+    <i class="fa fa-envelope-o" aria-hidden="true"></i>
+    <h3>Se Inscreva!</h3>
+    <p class="subline">E receba notificações de quando o nosso site lançar.</p>
+
+    <!-- FORM -->
+    <%= form_with url: "/api/v1/newsletter_subscription/subscribe", method: :post, model: NewsletterSubscription.new, class:"subscribe-form" do |form| %>
+      <%= form.text_field(:email, placeholder:"* Seu Email", onfocus:"this.placeholder = ''", onblur:"this.placeholder = '* Seu Email'", class:"email form-control")%>
+      <%= form.submit "Enviar!", class: "btn btn-primary form-control button" %>
+
+      <!-- SUCCESS-ERROR MESSAGE -->
+      <div class="error-message">* Insira um email Válido!</div>
+      <div class="success-message">* Inscrito com Sucesso!</div>
+      <!-- /SUCCESS-ERROR MESSAGE -->
+    <% end %><!-- /FORM -->
+  </div><!-- /CARD -->
+</div><!-- /POPUP ( SUBSCRIBE ) -->
