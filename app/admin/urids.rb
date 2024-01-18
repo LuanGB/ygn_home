@@ -15,6 +15,7 @@ ActiveAdmin.register Urid do
   #   permitted << :other if params[:action] == 'create' && current_user.admin?
   #   permitted
   # end
+  permit_params :resource_type, :resource_id, :slug, :uid
   form do |_f|
     semantic_errors
     inputs do
