@@ -1,6 +1,11 @@
 # frozen_string_literal: true
 
 class ApplicationController < ActionController::Base
+  if Rails.env.production?
+    rescue_from('Exception') { |e| render 'errors/500', status: :internal_server_error, layout: nil and Rails.logger.error e }
+    rescue_from('ActionController::RoutingError') { render 'errors/404', status: :not_found, layout: nil }
+  end
+
   private
 
   def find_resource
