@@ -3,8 +3,5 @@
 <%= render @blog_author %>
 
 <div>
-  <%= link_to "Edit this author", edit_blog_author_path(@blog_author) %> |
   <%= link_to "Back to authors", blog_authors_path %>
-
-  <%= button_to "Destroy this author", @blog_author, method: :delete %>
 </div>

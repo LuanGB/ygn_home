@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-RSpec.describe Blog::Category, type: :model do
+RSpec.describe Blog::Category do
   pending "add some examples to (or delete) #{__FILE__}"
 end

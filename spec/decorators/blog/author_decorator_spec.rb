@@ -1,4 +1,3 @@
-require 'rails_helper'
+# frozen_string_literal: true
 
-RSpec.describe Blog::AuthorDecorator do
-end
+require 'rails_helper'

@@ -1,1 +1,3 @@
-json.partial! "blog_categories/blog_category", blog_category: @blog_category
+# frozen_string_literal: true
+
+json.partial! 'blog_categories/blog_category', blog_category: @blog_category

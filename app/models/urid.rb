@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class Urid < ApplicationRecord
-  NAMESPACES = ["blog", "store", "forum"]
+  NAMESPACES = %w[blog store forum].freeze
 
   belongs_to :resource, polymorphic: true
 
@@ -10,11 +12,12 @@ class Urid < ApplicationRecord
   def to_path
     return '/404.html' unless resource
 
-    pluralized_path = resource_type.downcase.split("::").map do |e|
+    pluralized_path = resource_type.downcase.split('::').map do |e|
       next e if NAMESPACES.include? e
+
       ActiveSupport::Inflector.pluralize(e)
     end.join('/')
 
-    "/#{[pluralized_path, (slug || resource_id)].join('/')}"
+    "/#{[pluralized_path, slug || resource_id].join('/')}"
   end
 end

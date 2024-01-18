@@ -1,63 +1,65 @@
-class Blog::CommentsController < ApplicationController
-  before_action :set_blog_comment, only: %i[ show edit update destroy ]
+# frozen_string_literal: true
 
-  # GET /blog/comments or /blog/comments.json
-  def index
-    @blog_comments = Blog::Comment.all
-  end
+module Blog
+  class CommentsController < ApplicationController
+    before_action :set_blog_comment, only: %i[show edit update destroy]
 
-  # GET /blog/comments/1 or /blog/comments/1.json
-  def show
-  end
+    # GET /blog/comments or /blog/comments.json
+    def index
+      @blog_comments = Blog::Comment.all
+    end
 
-  # GET /blog/comments/new
-  def new
-    @blog_comment = Blog::Comment.new
-  end
+    # GET /blog/comments/1 or /blog/comments/1.json
+    def show; end
 
-  # GET /blog/comments/1/edit
-  def edit
-  end
+    # GET /blog/comments/new
+    def new
+      @blog_comment = Blog::Comment.new
+    end
 
-  # POST /blog/comments or /blog/comments.json
-  def create
-    @blog_comment = Blog::Comment.new(blog_comment_params)
+    # GET /blog/comments/1/edit
+    def edit; end
 
-    respond_to do |format|
-      if @blog_comment.save
-        format.html { redirect_to blog_comment_url(@blog_comment), notice: "Comment was successfully created." }
-        format.json { render :show, status: :created, location: @blog_comment }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @blog_comment.errors, status: :unprocessable_entity }
+    # POST /blog/comments or /blog/comments.json
+    def create
+      @blog_comment = Blog::Comment.new(blog_comment_params)
+
+      respond_to do |format|
+        if @blog_comment.save
+          format.html { redirect_to blog_comment_url(@blog_comment), notice: 'Comment was successfully created.' }
+          format.json { render :show, status: :created, location: @blog_comment }
+        else
+          format.html { render :new, status: :unprocessable_entity }
+          format.json { render json: @blog_comment.errors, status: :unprocessable_entity }
+        end
       end
     end
-  end
 
-  # PATCH/PUT /blog/comments/1 or /blog/comments/1.json
-  def update
-    respond_to do |format|
-      if @blog_comment.update(blog_comment_params)
-        format.html { redirect_to blog_comment_url(@blog_comment), notice: "Comment was successfully updated." }
-        format.json { render :show, status: :ok, location: @blog_comment }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @blog_comment.errors, status: :unprocessable_entity }
+    # PATCH/PUT /blog/comments/1 or /blog/comments/1.json
+    def update
+      respond_to do |format|
+        if @blog_comment.update(blog_comment_params)
+          format.html { redirect_to blog_comment_url(@blog_comment), notice: 'Comment was successfully updated.' }
+          format.json { render :show, status: :ok, location: @blog_comment }
+        else
+          format.html { render :edit, status: :unprocessable_entity }
+          format.json { render json: @blog_comment.errors, status: :unprocessable_entity }
+        end
       end
     end
-  end
 
-  # DELETE /blog/comments/1 or /blog/comments/1.json
-  def destroy
-    @blog_comment.destroy!
+    # DELETE /blog/comments/1 or /blog/comments/1.json
+    def destroy
+      @blog_comment.destroy!
 
-    respond_to do |format|
-      format.html { redirect_to blog_comments_url, notice: "Comment was successfully destroyed." }
-      format.json { head :no_content }
+      respond_to do |format|
+        format.html { redirect_to blog_comments_url, notice: 'Comment was successfully destroyed.' }
+        format.json { head :no_content }
+      end
     end
-  end
 
-  private
+    private
+
     # Use callbacks to share common setup or constraints between actions.
     def set_blog_comment
       @blog_comment = Blog::Comment.find(params[:id])
@@ -67,4 +69,5 @@ class Blog::CommentsController < ApplicationController
     def blog_comment_params
       params.require(:blog_comment).permit(:date, :content)
     end
+  end
 end
