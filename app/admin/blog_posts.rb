@@ -16,14 +16,49 @@ ActiveAdmin.register Blog::Post do
   #   permitted
   # end
 
-  permit_params :title, :published_at, :content
+  controller do
+    def create
+      super
+
+      slug = resource.title.downcase.tr(' ', '-').dasherize
+      Urid.create resource: resource, uid: SecureRandom.uuid, slug: slug
+    end
+
+    def update
+      super
+
+      slug = resource.title.downcase.tr(' ', '-').dasherize
+      urid = Urid.find_or_initialize_by(resource: resource, slug: slug)
+      return if urid.persisted?
+
+      urid.uid = SecureRandom.uuid
+      urid.save
+    end
+  end
+
+  permit_params :title, :published_at, :content, :cover, :thumbnail, :urid, author_ids: [], category_ids: [], tag_ids: []
 
   filter :title
   filter :published_at
   filter :created_at
 
   show do
-    simple_format blog_post.html_safe_content
+    attributes_table do
+      row :title
+      row :authors
+      row :categories
+      row :tags
+      row :published_at
+      row :cover do |post|
+        image_tag post.cover_path, width: '1280px'
+      end
+      row :thumbnail do |post|
+        image_tag post.thumbnail_path, width: '720px'
+      end
+    end
+    attributes_table do
+      row :html_safe_content
+    end
   end
 
   index do
@@ -39,6 +74,11 @@ ActiveAdmin.register Blog::Post do
     inputs 'Details' do
       input :title
       input :published_at, label: 'Publish Post At', as: :date_time_picker
+      input :authors, as: :select_2_multiple, collection: Blog::Author.all
+      input :categories, as: :select_2_multiple, collection: Blog::Category.all
+      input :tags, as: :select_2_multiple, collection: Blog::Tag.all
+      input :cover, as: :file, hint: !object.new_record? && image_tag(object.cover_path, width: '1280px')
+      input :thumbnail, as: :file, hint: !object.new_record? && image_tag(object.thumbnail_path, width: '720px')
       li "Created at #{f.object.created_at}" unless f.object.new_record?
     end
     inputs 'Content' do

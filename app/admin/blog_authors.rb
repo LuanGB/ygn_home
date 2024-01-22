@@ -17,4 +17,25 @@ ActiveAdmin.register Blog::Author do
   # end
 
   filter :name
+  permit_params :name, :bio, :avatar
+
+  show do
+    attributes_table do
+      row :name
+      row :bio
+      row :avatar do |author|
+        image_tag author.avatar_path, width: '90px'
+      end
+    end
+  end
+
+  form html: { multipart: true } do |_f|
+    semantic_errors
+    inputs do
+      input :name
+      input :bio, as: :text
+      input :avatar, as: :file, hint: image_tag(object.avatar_path, width: '360px')
+    end
+    actions
+  end
 end

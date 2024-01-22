@@ -9,7 +9,12 @@ class BlogController < ApplicationController
     ['blog']
   end
 
-  def page_title
-    'YGN - Blog'
+  def page_config
+    super.merge(page_title: 'YGN - Blog')
   end
+
+  def page_content
+    super.merge(top_3_recent: Blog::Post.first(3))
+  end
+  helper_method :page_content
 end

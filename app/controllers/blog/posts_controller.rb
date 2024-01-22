@@ -15,9 +15,12 @@ module Blog
     private
 
     def page_config
-      {
-        page_title: @blog_post.title
-      }
+      super.merge(page_title: @blog_post.title)
     end
+
+    def page_content
+      super.merge(similar_articles: [Blog::Post.last])
+    end
+    helper_method :page_content
   end
 end

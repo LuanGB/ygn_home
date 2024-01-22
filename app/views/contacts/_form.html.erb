@@ -1,0 +1,22 @@
+<h4 class="nk-widget-title"><span class="text-main-1">Contact</span> With Us</h4>
+<div class="nk-widget-content">
+  <%= form_tag("/api/v1/contacts.json", class:"nk-form nk-form-ajax", format: "json", remote: true) do |form| %>
+    <div class="row vertical-gap sm-gap">
+      <div class="col-md-6">
+        <%= text_field_tag :'contact[email]', nil, class: "form-control required", placeholder: "Email *" %>
+      </div>
+      <div class="col-md-6">
+        <%= text_field_tag :'contact[name]', nil, class: "form-control required", placeholder: "Name *" %>
+      </div>
+    </div>
+    <div class="nk-gap"></div>
+    <%= text_field_tag :'contact[message]', nil, class: "form-control required", placeholder: "Message *", rows:"5" %>
+    <div class="nk-gap-1"></div>
+    <%= button_tag type:"submit", name: "commit", class: "nk-btn nk-btn-rounded nk-btn-color-white" do %>
+      <span>Send</span>
+      <span class="icon"><i class="ion-paper-airplane"></i></span>
+    <% end %>
+    <div class="nk-form-response-success"></div>
+    <div class="nk-form-response-error"></div>
+  <% end %>
+</div>

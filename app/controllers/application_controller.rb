@@ -24,6 +24,13 @@ class ApplicationController < ActionController::Base
   end
   helper_method :resource_stylesheets
 
+  def page_content
+    {
+      latest_posts: Blog::Post.last(2)
+    }
+  end
+  helper_method :page_content
+
   def page_config
     {
       page_title: 'YGN'

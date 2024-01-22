@@ -2,35 +2,28 @@
 <div class="nk-gap"></div>
 <div class="row">
 
-  <div class="col-md-6">
-    <div class="nk-blog-post">
-      <a href="blog-article.html" class="nk-post-img">
-        <img src="assets/images/post-3-mid.jpg" alt="We found a witch! May we burn her?">
-        <span class="nk-post-comments-count">7</span>
+  <% page_content[:similar_articles].each do |post| %>
+    <div class="col-md-6">
+      <div class="nk-blog-post">
+        <a href="/<%= post.uid %>" class="nk-post-img">
+          <img src="<%= post.thumbnail_path %>" alt="We found a witch! May we burn her?">
+          <span class="nk-post-comments-count"><%= post.comments.count %></span>
 
-        <span class="nk-post-categories">
-          <span class="bg-main-2">Adventure</span>
-        </span>
+          <span class="nk-post-categories">
+            <% @blog_post.categories.each do |category| %>
+              <span class="bg-main" style="
+                background-color: <%= category.background_color %>;
+                color: <%= category.text_color %>
+              ">
+                <%= category.name %>
+              </span>
+            <% end %>
+          </span>
 
-      </a>
-      <div class="nk-gap"></div>
-      <h2 class="nk-post-title h4"><a href="blog-article.html">We found a witch! May we burn her?</a></h2>
+        </a>
+        <div class="nk-gap"></div>
+        <h2 class="nk-post-title h4"><a href="blog-article.html"><%= post.title %></a></h2>
+      </div>
     </div>
-  </div>
-
-  <div class="col-md-6">
-    <div class="nk-blog-post">
-      <a href="blog-article.html" class="nk-post-img">
-        <img src="assets/images/post-4-mid.jpg" alt="For good, too though, in consequence">
-        <span class="nk-post-comments-count">23</span>
-
-        <span class="nk-post-categories">
-          <span class="bg-main-3">Strategy</span>
-        </span>
-
-      </a>
-      <div class="nk-gap"></div>
-      <h2 class="nk-post-title h4"><a href="blog-article.html">For good, too though, in consequence</a></h2>
-    </div>
-  </div>
+  <% end %>
 </div>
