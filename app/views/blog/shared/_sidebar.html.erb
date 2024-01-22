@@ -17,51 +17,31 @@
           <li><a class="nk-social-twitch" href="#"><span class="fab fa-twitch"></span></a></li>
           <li><a class="nk-social-instagram" href="#"><span class="fab fa-instagram"></span></a></li>
           <li><a class="nk-social-facebook" href="#"><span class="fab fa-facebook"></span></a></li>
-          <li><a class="nk-social-google-plus" href="#"><span class="fab fa-google-plus"></span></a></li>
           <li><a class="nk-social-youtube" href="#"><span class="fab fa-youtube"></span></a></li>
-          <li><a class="nk-social-twitter" href="#" target="_blank"><span class="fab fa-twitter"></span></a></li>
-          <li><a class="nk-social-pinterest" href="#"><span class="fab fa-pinterest-p"></span></a></li>
-          <li><a class="nk-social-rss" href="#"><span class="fa fa-rss"></span></a></li>
         </ul>
       </div>
     </div>
-    <div class="nk-widget nk-widget-highlighted">
+<!--     <div class="nk-widget nk-widget-highlighted">
       <h4 class="nk-widget-title"><span><span class="text-main-1">Latest</span> Video</span></h4>
       <div class="nk-widget-content">
         <div class="nk-plain-video" data-video="https://www.youtube.com/watch?v=vXy8UBazlO8"></div>
       </div>
-    </div>
+    </div> -->
     <div class="nk-widget nk-widget-highlighted">
       <h4 class="nk-widget-title"><span><span class="text-main-1">Top 3</span> Recent</span></h4>
       <div class="nk-widget-content">
-
-        <div class="nk-widget-post">
-          <a href="blog-article.html" class="nk-post-image">
-            <img src="assets/images/post-1-sm.jpg" alt="">
-          </a>
-          <h3 class="nk-post-title"><a href="blog-article.html">Smell magic in the air. Or maybe barbecue</a></h3>
-          <div class="nk-post-date"><span class="fa fa-calendar"></span> Sep 18, 2018</div>
-        </div>
-
-        <div class="nk-widget-post">
-          <a href="blog-article.html" class="nk-post-image">
-            <img src="assets/images/post-2-sm.jpg" alt="">
-          </a>
-          <h3 class="nk-post-title"><a href="blog-article.html">Grab your sword and fight the Horde</a></h3>
-          <div class="nk-post-date"><span class="fa fa-calendar"></span> Sep 5, 2018</div>
-        </div>
-
-        <div class="nk-widget-post">
-          <a href="blog-article.html" class="nk-post-image">
-            <img src="assets/images/post-3-sm.jpg" alt="">
-          </a>
-          <h3 class="nk-post-title"><a href="blog-article.html">We found a witch! May we burn her?</a></h3>
-          <div class="nk-post-date"><span class="fa fa-calendar"></span> Aug 27, 2018</div>
-        </div>
-
+        <% page_content[:top_3_recent].each do |post| %>
+          <div class="nk-widget-post">
+            <a href="/<%= post.uid %>" class="nk-post-image">
+              <img src="<%= post.thumbnail_path %>" alt="<%= post.title %> image">
+            </a>
+            <h3 class="nk-post-title"><a href="/<%= post.uid %>"><%= post.title %></a></h3>
+            <div class="nk-post-date"><span class="fa fa-calendar"></span><%= I18n.l post.published_at, format: :short %></div>
+          </div>
+        <% end %>
       </div>
     </div>
-    <div class="nk-widget nk-widget-highlighted">
+    <!-- <div class="nk-widget nk-widget-highlighted">
       <h4 class="nk-widget-title"><span><span class="text-main-1">Latest</span> Screenshots</span></h4>
       <div class="nk-widget-content">
         <div class="nk-popup-gallery">
@@ -124,8 +104,8 @@
           </div>
         </div>
       </div>
-    </div>
-    <div class="nk-widget nk-widget-highlighted">
+    </div> -->
+    <!-- <div class="nk-widget nk-widget-highlighted">
       <h4 class="nk-widget-title"><span><span class="text-main-1">Next</span> Matches</span></h4>
       <div class="nk-widget-content">
         <div class="nk-widget-match">
@@ -194,8 +174,8 @@
           </a>
         </div>
       </div>
-    </div>
-    <div class="nk-widget nk-widget-highlighted">
+    </div> -->
+    <!-- <div class="nk-widget nk-widget-highlighted">
       <h4 class="nk-widget-title"><span><span class="text-main-1">Most</span> Popular</span></h4>
       <div class="nk-widget-content">
 
@@ -227,6 +207,6 @@
         </div>
 
       </div>
-    </div>
+    </div> -->
   </aside>
 </div>

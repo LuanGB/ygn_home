@@ -15,4 +15,15 @@ ActiveAdmin.register Blog::Category do
   #   permitted << :other if params[:action] == 'create' && current_user.admin?
   #   permitted
   # end
+  permit_params :name, :background_color, :text_color
+
+  form do |_f|
+    semantic_errors
+    inputs do
+      input :name
+      input :background_color, input_html: { class: 'colorpicker' }
+      input :text_color, input_html: { class: 'colorpicker' }
+    end
+    actions
+  end
 end

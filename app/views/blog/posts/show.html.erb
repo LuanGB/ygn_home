@@ -2,20 +2,27 @@
   <div class="nk-blog-post nk-blog-post-single">
     <div class="nk-post-text mt-0">
       <div class="nk-post-img">
-        <img src="assets/images/post-2.jpg" alt="Grab your sword and fight the Horde">
+        <img src="<%= @blog_post.cover_path %>" alt="Grab your sword and fight the Horde">
       </div>
       <div class="nk-gap-1"></div>
       <!-- <h1 class="nk-post-title h4">Grab your sword and fight the Horde</h1> -->
       <div class="nk-post-by">
-        <img src="assets/images/avatar-2.jpg" alt="Witch Murder" class="rounded-circle" width="35"> by <a href="#">Witch Murder</a> in Sep 5, 2018
-
+        <% @blog_post.authors.each do |author| %>
+          <a href="#">
+            <img src="<%= author.avatar_path %>" alt="<%= author.name %> author image" class="rounded-circle" width="35">
+          </a>
+          by <a href="#"><%= author.name %></a>
+        <% end %> at <%= I18n.l @blog_post.published_at, format: :short %>
 
         <div class="nk-post-categories">
-
-          <span class="bg-main-1">Action</span>
-
-          <span class="bg-main-2">Adventure</span>
-
+          <% @blog_post.categories.each do |category| %>
+            <span class="bg-main" style="
+              background-color: <%= category.background_color %>;
+              color: <%= category.text_color %>
+            ">
+              <%= category.name %>
+            </span>
+          <% end %>
         </div>
 
       </div>

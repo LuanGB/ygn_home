@@ -4,6 +4,7 @@ module Blog
   class Post < ApplicationRecord
     has_one_attached :cover
     has_one_attached :thumbnail
+    include AttachmentsUrls
 
     has_many :author_posts, class_name: Blog::AuthorPost.to_s, dependent: :destroy
     has_many :authors, through: :author_posts, class_name: Blog::Author.to_s
@@ -19,8 +20,15 @@ module Blog
 
     has_many :urids, inverse_of: :resource, dependent: :destroy
 
+    validates :cover, attached: true, dimension: { width: { min: 1279, max: 1921 }, height: { min: 719, max: 1081 } }, content_type: ['image/png', 'image/jpg', 'image/jpeg']
+    validates :thumbnail, attached: true, dimension: { width: { min: 719, max: 1281 }, height: { min: 359, max: 721 } }, content_type: ['image/png', 'image/jpg', 'image/jpeg']
+
     def html_safe_content
       content&.html_safe
+    end
+
+    def uid
+      urids.last.uid
     end
   end
 end

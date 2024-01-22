@@ -1,3 +1,6 @@
+/*
+*= require jquery.minicolors
+*/
 // Sass variable overrides must be declared before loading up Active Admin's styles.
 //
 // To view the variables that Active Admin provides, take a look at
@@ -20,3 +23,4 @@
 @import "active_admin_datetimepicker";
 @import "activeadmin/quill_editor/quill.snow";
 @import "activeadmin/quill_editor_input";
+@import "active_admin/select2/base";

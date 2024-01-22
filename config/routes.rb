@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  devise_for :users
   devise_for :admin_users, ActiveAdmin::Devise.config
 
   ActiveAdmin.routes(self)
@@ -11,6 +12,7 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       post 'newsletter_subscription/subscribe', to: 'newsletter_subscription#create'
+      resources :contacts, only: :create
     end
   end
 

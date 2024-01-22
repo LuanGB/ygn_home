@@ -1,3 +1,12 @@
+GIT
+  remote: https://github.com/mfairburn/activeadmin-select2.git
+  revision: f35b0367cca61266737c94ca9a94cd142c95b763
+  specs:
+    activeadmin-select2 (0.1.8)
+      activeadmin
+      jquery-rails
+      select2-rails
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -52,6 +61,11 @@ GEM
       rails-html-sanitizer (~> 1.6)
     active_admin_datetimepicker (1.1.0)
       activeadmin (>= 2.14.0, < 4.0)
+    active_storage_validations (1.1.4)
+      activejob (>= 5.2.0)
+      activemodel (>= 5.2.0)
+      activestorage (>= 5.2.0)
+      activesupport (>= 5.2.0)
     activeadmin (3.2.0)
       arbre (~> 1.2, >= 1.2.1)
       formtastic (>= 3.1)
@@ -124,6 +138,13 @@ GEM
       regexp_parser (>= 1.5, < 3.0)
       xpath (~> 3.2)
     coderay (1.1.3)
+    coffee-rails (5.0.0)
+      coffee-script (>= 2.2.0)
+      railties (>= 5.2.0)
+    coffee-script (2.4.1)
+      coffee-script-source
+      execjs
+    coffee-script-source (1.12.2)
     concurrent-ruby (1.2.3)
     connection_pool (2.4.1)
     crass (1.0.6)
@@ -145,6 +166,7 @@ GEM
     drb (2.2.0)
       ruby2_keywords
     erubi (1.12.0)
+    execjs (2.9.1)
     ffi (1.16.3)
     formtastic (5.0.0)
       actionpack (>= 6.0.0)
@@ -175,6 +197,9 @@ GEM
     jbuilder (2.11.5)
       actionview (>= 5.0.0)
       activesupport (>= 5.0.0)
+    jquery-minicolors-rails (2.2.6.2)
+      jquery-rails
+      rails (>= 3.2.8)
     jquery-rails (4.6.0)
       rails-dom-testing (>= 1, < 3)
       railties (>= 4.2.0)
@@ -300,6 +325,7 @@ GEM
       actionpack (>= 5.2)
       railties (>= 5.2)
     rexml (3.2.6)
+    rolify (6.0.1)
     rspec-core (3.12.2)
       rspec-support (~> 3.12.0)
     rspec-expectations (3.12.3)
@@ -359,6 +385,7 @@ GEM
       sprockets (> 3.0)
       sprockets-rails
       tilt
+    select2-rails (4.0.13)
     selenium-webdriver (4.16.0)
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 3.0)
@@ -404,7 +431,9 @@ PLATFORMS
 
 DEPENDENCIES
   active_admin_datetimepicker
+  active_storage_validations
   activeadmin
+  activeadmin-select2!
   activeadmin_dark_color_scheme
   activeadmin_quill_editor
   bootsnap
@@ -412,11 +441,13 @@ DEPENDENCIES
   bundler-audit
   cancancan
   capybara
+  coffee-rails
   devise
   draper
   image_processing
   importmap-rails
   jbuilder
+  jquery-minicolors-rails
   jquery-rails
   pg (~> 1.1)
   pry-rails
@@ -425,11 +456,13 @@ DEPENDENCIES
   rack-mini-profiler
   rails (~> 7.1.2)
   redis (>= 4.0.1)
+  rolify
   rspec-rails (~> 6.1.0)
   rubocop-performance
   rubocop-rails
   rubocop-rspec
   sassc-rails
+  select2-rails
   selenium-webdriver
   sprockets-rails
   stimulus-rails

@@ -25,8 +25,13 @@ gem 'sassc-rails'
 gem 'active_admin_datetimepicker'
 gem 'activeadmin_quill_editor'
 gem 'activeadmin_dark_color_scheme'
-
+gem 'select2-rails'
+gem 'activeadmin-select2', github: 'mfairburn/activeadmin-select2'
+gem 'coffee-rails'
+gem 'jquery-minicolors-rails'
+gem 'active_storage_validations'
 gem 'image_processing'
+gem 'rolify'
 
 group :development, :test do
   gem 'brakeman'
