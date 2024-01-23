@@ -4,7 +4,8 @@ require 'rails_helper'
 
 RSpec.describe 'blog/authors/edit' do
   let(:blog_author) do
-    Blog::Author.create!(name: 'MyString', bio: 'MyString', avatar: File.open(Rails.root.join('spec', 'fixtures', 'image.jpg')))
+    Blog::Author.create!(name: 'MyString', bio: 'MyString',
+                         avatar: File.open(Rails.root.join('spec', 'fixtures', 'image.jpg')))
   end
 
   before do

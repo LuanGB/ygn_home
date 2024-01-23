@@ -4,7 +4,7 @@ module Blog
   class PostsController < BlogController
     # GET /blog/posts or /blog/posts.json
     def index
-      @blog_posts = Blog::Post.all
+      @blog_posts = Blog::Post.page(params.fetch(:page, 1)).per(10)
     end
 
     # GET /blog/posts/1 or /blog/posts/1.json
@@ -15,7 +15,9 @@ module Blog
     private
 
     def page_config
-      super.merge(page_title: @blog_post.title)
+      config = super
+      config[:page_title] = @blog_post.title if @blog_post
+      config
     end
 
     def page_content

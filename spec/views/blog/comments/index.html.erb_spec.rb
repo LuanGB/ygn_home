@@ -4,7 +4,9 @@ require 'rails_helper'
 
 RSpec.describe 'blog/comments/index' do
   before do
-    assign(:blog_comments, [Blog::Comment.create!(date: 'Date', content: 'Content'), Blog::Comment.create!(date: 'Date', content: 'Content')])
+    assign(:blog_comments,
+           [Blog::Comment.create!(date: 'Date', content: 'Content'),
+            Blog::Comment.create!(date: 'Date', content: 'Content')])
   end
 
   xit 'renders a list of blog/comments' do

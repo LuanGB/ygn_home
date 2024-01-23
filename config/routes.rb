@@ -7,7 +7,8 @@ Rails.application.routes.draw do
   ActiveAdmin.routes(self)
 
   root 'launch#index'
-  get '/:urid', to: 'site#find_resource', constraints: { urid: /[0-9a-fA-F]{8}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{12}/ }
+  get '/:urid', to: 'site#find_resource',
+                constraints: { urid: /[0-9a-fA-F]{8}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{12}/ }
 
   namespace :api do
     namespace :v1 do
@@ -17,18 +18,19 @@ Rails.application.routes.draw do
   end
 
   namespace :blog do
+    root 'posts#index'
+    resources :authors, only: %i[show index]
+    resources :categories, only: %i[index]
     resources :comments, only: %i[create update destroy]
-    resources :tags, only: %i[index show]
-    resources :categories, only: %i[index show]
-    resources :authors, only: %i[index show]
     resources :posts, only: %i[index show]
+    resources :tags, only: %i[index]
   end
 
   namespace :site do
-    get 'home'
     get 'contact'
-    get 'terms'
+    get 'home'
     get 'privacy'
+    get 'terms'
   end
 
   get 'up' => 'rails/health#show', as: :rails_health_check

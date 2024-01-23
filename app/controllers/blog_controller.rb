@@ -1,7 +1,9 @@
 # frozen_string_literal: true
 
 class BlogController < ApplicationController
-  http_basic_authenticate_with name: ENV.fetch('BASIC_AUTH_NAME'), password: ENV.fetch('BASIC_AUTH_PASSWORD') if Rails.env.production?
+  if Rails.env.production?
+    http_basic_authenticate_with name: ENV.fetch('BASIC_AUTH_NAME'), password: ENV.fetch('BASIC_AUTH_PASSWORD')
+  end
 
   private
 
@@ -10,7 +12,7 @@ class BlogController < ApplicationController
   end
 
   def page_config
-    super.merge(page_title: 'YGN - Blog')
+    super.merge(page_title: 'The YGN Blog')
   end
 
   def page_content

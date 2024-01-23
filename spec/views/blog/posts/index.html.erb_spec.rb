@@ -4,7 +4,9 @@ require 'rails_helper'
 
 RSpec.describe 'blog/posts/index' do
   before do
-    assign(:blog_posts, [Blog::Post.create!(title: 'Title', content: 'Content'), Blog::Post.create!(title: 'Title', content: 'Content')])
+    assign(:blog_posts,
+           [Blog::Post.create!(title: 'Title', content: 'Content'),
+            Blog::Post.create!(title: 'Title', content: 'Content')])
   end
 
   xit 'renders a list of blog/posts' do

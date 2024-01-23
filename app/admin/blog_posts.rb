@@ -36,7 +36,8 @@ ActiveAdmin.register Blog::Post do
     end
   end
 
-  permit_params :title, :published_at, :content, :cover, :thumbnail, :urid, author_ids: [], category_ids: [], tag_ids: []
+  permit_params :title, :published_at, :content, :cover, :thumbnail, :urid, author_ids: [], category_ids: [],
+                                                                            tag_ids: []
 
   filter :title
   filter :published_at

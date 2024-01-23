@@ -12,7 +12,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 20_240_119_201_114) do
+ActiveRecord::Schema[7.1].define(version: 20_240_122_215_418) do
   # These are extensions that must be enabled in order to support this database
   enable_extension 'plpgsql'
 
@@ -134,6 +134,7 @@ ActiveRecord::Schema[7.1].define(version: 20_240_119_201_114) do
     t.datetime 'published_at'
     t.datetime 'created_at', null: false
     t.datetime 'updated_at', null: false
+    t.text 'description'
   end
 
   create_table 'blog_tags', force: :cascade do |t|
