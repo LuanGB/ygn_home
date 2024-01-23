@@ -33,6 +33,7 @@ gem 'pundit'
 gem 'rolify'
 gem 'sassc-rails'
 gem 'select2-rails'
+gem 'aws-sdk-s3'
 
 group :development, :test do
   gem 'brakeman'
