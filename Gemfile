@@ -43,6 +43,7 @@ group :development, :test do
   gem 'rubocop-performance', require: false
   gem 'rubocop-rails', require: false
   gem 'rubocop-rspec', require: false
+  gem 'dotenv', require: 'dotenv/load'
 end
 
 group :development do

@@ -11,7 +11,7 @@ cloudflare:
   service: S3
   endpoint: <%= ENV.fetch("CLOUDFLARE_ENDPOINT", nil) %>
   access_key_id: <%= ENV.fetch("CLOUDFLARE_ACCESS_KEY_ID", nil) %>
-  secret_access_key: <%= ENV.fetch("CLOUDFLARE_ACCESS_KEY_ID", nil) %>
+  secret_access_key: <%= ENV.fetch("CLOUDFLARE_SECRET_ACCESS_KEY", nil) %>
   region: auto
   bucket: <%= ENV.fetch("CLOUDFLARE_BUCKET_NAME", nil) %>
 
