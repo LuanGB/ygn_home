@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class ApplicationController < ActionController::Base
+  protect_from_forgery with: :exception
+
   if Rails.env.production?
     rescue_from('Exception') do |e|
       render 'errors/500', status: :internal_server_error, layout: nil and Rails.logger.error e
