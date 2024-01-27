@@ -19,9 +19,11 @@ gem 'turbo-rails'
 gem 'activeadmin'
 gem 'activeadmin_dark_color_scheme'
 gem 'active_admin_datetimepicker'
+gem 'activeadmin_json_editor'
 gem 'activeadmin_quill_editor'
 gem 'activeadmin-select2', github: 'mfairburn/activeadmin-select2'
 gem 'active_storage_validations'
+gem 'aws-sdk-s3'
 gem 'cancancan'
 gem 'coffee-rails'
 gem 'devise'
@@ -33,17 +35,23 @@ gem 'pundit'
 gem 'rolify'
 gem 'sassc-rails'
 gem 'select2-rails'
-gem 'aws-sdk-s3'
+
+gem 'omniauth-discord'
+gem 'omniauth-facebook'
+gem 'omniauth-google-oauth2'
+gem 'omniauth-rails_csrf_protection'
+gem 'omniauth-twitch'
+gem 'omniauth-twitter2'
 
 group :development, :test do
   gem 'brakeman'
   gem 'bundler-audit'
+  gem 'dotenv', require: 'dotenv/load'
   gem 'pry-rails'
   gem 'rspec-rails', '~> 6.1.0'
   gem 'rubocop-performance', require: false
   gem 'rubocop-rails', require: false
   gem 'rubocop-rspec', require: false
-  gem 'dotenv', require: 'dotenv/load'
 end
 
 group :development do

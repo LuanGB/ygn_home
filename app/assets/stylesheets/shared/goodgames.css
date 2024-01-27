@@ -8039,7 +8039,7 @@ div.nk-error {
 }
 
 .nk-post-by {
-    margin-top: 15px;
+    margin-bottom: 10px;
     font-size: .8em;
 }
 
@@ -8051,7 +8051,8 @@ div.nk-error {
 
 .nk-post-by img {
     height: auto;
-    margin-right: 11px;
+    margin-right: 5px;
+    margin-left: 5px;
 }
 
 .nk-post-categories {

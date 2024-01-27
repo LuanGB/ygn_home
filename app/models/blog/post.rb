@@ -4,6 +4,7 @@ module Blog
   class Post < ApplicationRecord
     has_one_attached :cover
     has_one_attached :thumbnail
+    has_many_attached :content_files
     include AttachmentsUrls
 
     has_many :author_posts, class_name: Blog::AuthorPost.to_s, dependent: :destroy
@@ -24,6 +25,8 @@ module Blog
                       content_type: ['image/png', 'image/jpg', 'image/jpeg']
     validates :thumbnail, attached: true,
                           dimension: { width: { min: 719, max: 1281 }, height: { min: 359, max: 721 } }, content_type: ['image/png', 'image/jpg', 'image/jpeg']
+
+    scope :published, -> { where('published_at <= ?', Time.zone.now) }
 
     def html_safe_content
       content&.html_safe

@@ -12,7 +12,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 20_240_122_215_418) do
+ActiveRecord::Schema[7.1].define(version: 20_240_124_173_831) do
   # These are extensions that must be enabled in order to support this database
   enable_extension 'plpgsql'
 
@@ -177,6 +177,16 @@ ActiveRecord::Schema[7.1].define(version: 20_240_122_215_418) do
     t.index %w[resource_type resource_id], name: 'index_urids_on_resource'
   end
 
+  create_table 'user_authentication_providers', force: :cascade do |t|
+    t.string 'provider'
+    t.uuid 'uuid'
+    t.jsonb 'data'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+    t.bigint 'user_id', null: false
+    t.index ['user_id'], name: 'index_user_authentication_providers_on_user_id'
+  end
+
   create_table 'users', force: :cascade do |t|
     t.string 'email', default: '', null: false
     t.string 'encrypted_password', default: '', null: false
@@ -207,4 +217,5 @@ ActiveRecord::Schema[7.1].define(version: 20_240_122_215_418) do
   add_foreign_key 'blog_comment_posts', 'blog_posts', column: 'post_id'
   add_foreign_key 'blog_post_tags', 'blog_posts', column: 'post_id'
   add_foreign_key 'blog_post_tags', 'blog_tags', column: 'tag_id'
+  add_foreign_key 'user_authentication_providers', 'users'
 end

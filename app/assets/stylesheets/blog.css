@@ -9,6 +9,9 @@
   text-align: left;
   word-wrap: break-word;
 }
+.blog-post-container img {
+  max-width: 100%;
+}
 .blog-post-container p,
 .blog-post-container ol,
 .blog-post-container ul,

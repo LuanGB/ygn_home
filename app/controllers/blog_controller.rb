@@ -8,7 +8,7 @@ class BlogController < ApplicationController
   private
 
   def resource_stylesheets
-    ['blog']
+    super + ['blog']
   end
 
   def page_config
@@ -16,7 +16,6 @@ class BlogController < ApplicationController
   end
 
   def page_content
-    super.merge(top_3_recent: Blog::Post.first(3))
+    super.merge(top_3_recent: Blog::Post.first(5))
   end
-  helper_method :page_content
 end

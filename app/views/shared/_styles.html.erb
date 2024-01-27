@@ -21,6 +21,8 @@
 
 <script src="<%= asset_path('jquery/dist/jquery.min.js') %>"></script>
 
+<link href="//cdn.quilljs.com/1.3.6/quill.core.css" rel="stylesheet">
+
 <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
 <% resource_stylesheets.each do |resource_stylesheet| %>
   <%= stylesheet_link_tag(resource_stylesheet, "data-turbo-track": "reload") %>

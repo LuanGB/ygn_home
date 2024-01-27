@@ -4,7 +4,7 @@ module Blog
   class PostsController < BlogController
     # GET /blog/posts or /blog/posts.json
     def index
-      @blog_posts = Blog::Post.page(params.fetch(:page, 1)).per(10)
+      @blog_posts = Blog::Post.published.page(params.fetch(:page, 1)).per(10)
     end
 
     # GET /blog/posts/1 or /blog/posts/1.json
@@ -21,7 +21,14 @@ module Blog
     end
 
     def page_content
-      super.merge(similar_articles: [Blog::Post.last])
+      return @posts_page_content if @posts_page_content
+
+      @posts_page_content = super
+      if @blog_post
+        scope = Blog::Post.joins(:categories).where('blog_categories.id': @blog_post.categories.map(&:id))
+        @posts_page_content[:similar_articles] = scope.where.not(id: @blog_post.id).last(2)
+      end
+      @posts_page_content
     end
     helper_method :page_content
   end
