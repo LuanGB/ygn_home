@@ -4,7 +4,6 @@ module Blog
   class PostsController < BlogController
     # GET /blog/posts or /blog/posts.json
     def index
-      require 'pry'; binding.pry; true
       @blog_posts = Blog::Post.published.page(params.fetch(:page, 1)).per(10)
     end
 
