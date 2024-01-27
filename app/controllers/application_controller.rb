@@ -11,14 +11,11 @@ class ApplicationController < ActionController::Base
   private
 
   def find_resource
+    resource_type = request.path.split('/')[1..-2].map(&:capitalize).map(&:singularize).join('::')
     urid = Urid.where(slug: params[:id]).or(Urid.where(uid: params[:id])).where(resource_type: resource_type).first
     raise ActionController::RoutingError, 'Not Found' unless urid
 
     urid.resource
-  end
-
-  def resource_type
-    request.path.split('/')[1..-2].map(&:capitalize).map(&:singularize).join('::')
   end
 
   def resource_stylesheets
