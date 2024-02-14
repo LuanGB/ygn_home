@@ -16,6 +16,9 @@ class BlogController < ApplicationController
   end
 
   def page_content
-    super.merge(top_3_recent: Blog::Post.first(5))
+    super.merge(
+      top_3_recent: Blog::Post.first(5),
+      root_path: '/blog'
+    )
   end
 end
