@@ -11,4 +11,13 @@
  * It is generally better to create a new file per style scope.
  *
  *= require_self
+ *= require 'bootstrap/dist/css/bootstrap.min'
+ *= require 'ionicons/css/ionicons.min'
+ *= require 'flickity/dist/flickity.min'
+ *= require 'photoswipe/dist/photoswipe'
+ *= require 'photoswipe/dist/default-skin/default-skin'
+ *= require 'bootstrap-slider/dist/css/bootstrap-slider.min'
+ *= require 'summernote/dist/summernote-bs4'
+ *= require 'shared/goodgames'
+ *= require 'shared/custom'
  */

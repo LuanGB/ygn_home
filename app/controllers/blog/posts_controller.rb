@@ -30,6 +30,5 @@ module Blog
       end
       @posts_page_content
     end
-    helper_method :page_content
   end
 end

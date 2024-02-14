@@ -27,6 +27,7 @@ class ApplicationController < ActionController::Base
 
   def page_content
     {
+      root_path: root_path,
       latest_posts: Blog::Post.last(2)
     }
   end
