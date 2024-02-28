@@ -3,7 +3,7 @@
 class User < ApplicationRecord
   has_one_attached :avatar
 
-  devise :database_authenticatable, :confirmable, :registerable, :recoverable, :rememberable, :validatable, :omniauthable, omniauth_providers: %i[google facebook twitch twitter discord]
+  devise :lockable, :database_authenticatable, :confirmable, :registerable, :recoverable, :rememberable, :validatable, :omniauthable, omniauth_providers: %i[google facebook twitch twitter discord]
 
   rolify
 

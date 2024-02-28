@@ -12,7 +12,7 @@
 
 require 'securerandom'
 
-password = ENV.fetch('ADMIN_DEFAULT_ACCOUNT_PASSWORD', nil)
+password = ENV.fetch('ADMIN_DEFAULT_ACCOUNT_PASSWORD', 'e@5yp@55')
 
 unless AdminUser.find_by(email: 'yggdrasilgeeknetwork@gmail.com')
   AdminUser.create!(email: 'yggdrasilgeeknetwork@gmail.com', password: password, password_confirmation: password)

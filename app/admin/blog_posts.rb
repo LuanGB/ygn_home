@@ -36,9 +36,9 @@ ActiveAdmin.register Blog::Post do
     end
   end
 
-  permit_params :title, :published_at, :content, :cover, :thumbnail, :urid, author_ids: [], category_ids: [], tag_ids: []
+  permit_params :title, :description, :published_at, :content, :cover, :thumbnail, :urid, author_ids: [], category_ids: [], tag_ids: []
 
-  member_action :upload, method: [:post] do
+  collection_action :upload, method: [:post] do
     result = { success: resource.content_files.attach(params[:file_upload]) }
     result[:url] = url_for(resource.content_files.last) if result[:success]
     render json: result
@@ -83,7 +83,7 @@ ActiveAdmin.register Blog::Post do
     semantic_errors
     inputs 'Details' do
       input :title
-      input :description
+      input :description, as: :string
       input :published_at, label: 'Publish Post At', as: :date_time_picker
       input :authors, as: :select_2_multiple, collection: Blog::Author.all
       input :categories, as: :select_2_multiple, collection: Blog::Category.all
@@ -110,7 +110,7 @@ ActiveAdmin.register Blog::Post do
               ]
             }
           },
-          plugins: { image_uploader: { server_url: upload_admin_blog_post_path(object.id), field_name: 'file_upload' } }
+          plugins: { image_uploader: { server_url: upload_admin_blog_posts_path, field_name: 'file_upload' } }
         }
       }
     end

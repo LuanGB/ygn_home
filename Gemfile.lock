@@ -119,6 +119,8 @@ GEM
       activesupport (>= 3.0.0)
       ruby2_keywords (>= 0.0.2)
     ast (2.4.2)
+    attr_json (2.3.0)
+      activerecord (>= 6.0.0, < 7.2)
     aws-eventstream (1.3.0)
     aws-partitions (1.883.0)
     aws-sdk-core (3.190.3)
@@ -515,6 +517,7 @@ DEPENDENCIES
   activeadmin_dark_color_scheme
   activeadmin_json_editor
   activeadmin_quill_editor
+  attr_json
   aws-sdk-s3
   bootsnap
   brakeman

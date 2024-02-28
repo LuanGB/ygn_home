@@ -4,6 +4,10 @@ Rails.application.routes.draw do
   Rails.application.routes.draw do
     devise_for :users, controllers: {
       sessions: 'users/sessions',
+      confirmations: 'users/confirmations',
+      passwords: 'users/passwords',
+      registrations: 'users/registrations',
+      unlocks: 'users/unlocks',
       omniauth_callbacks: 'users/omniauth_callbacks'
     }
   end
@@ -22,8 +26,8 @@ Rails.application.routes.draw do
     end
   end
 
+  get '/blog', to: 'blog#index'
   namespace :blog do
-    root 'posts#index'
     resources :authors, only: %i[show index]
     resources :categories, only: %i[index]
     resources :comments, only: %i[create update destroy]
