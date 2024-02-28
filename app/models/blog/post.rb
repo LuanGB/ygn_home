@@ -33,7 +33,7 @@ module Blog
     end
 
     def uid
-      urids.last.uid
+      urids.last&.uid
     end
   end
 end
