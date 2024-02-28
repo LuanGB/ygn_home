@@ -19,6 +19,18 @@ unless AdminUser.find_by(email: 'yggdrasilgeeknetwork@gmail.com')
 end
 
 if ENV.fetch('SEED_ALPHA_ENV', nil)
+  socials = [
+    { "name": "facebook", "url": "https://facebook.com/yggdrasilgeeknetwork" },
+    { "name": "instagram", "url": "https://instagram.com/yggdrasilgeeknetwork" },
+    { "name": "youtube", "url": "https://youtube.com/yggdrasilgeeknetwork" },
+    { "name": "twitter", "url": "https://twitter.com/yggdrasilgeeknetwork" },
+    { "name": "twitch", "url": "https://twitch.com/yggdrasilgeeknetwork" }
+  ]
+  shareable_socials = [
+    { "name": "facebook", "url": "https://www.facebook.com/sharer.php?u=<URI>" },
+    { "name": "twitter", "url": "https://twitter.com/intent/post?text=<URI>" }
+  ]
+  SiteConfig.create(name: "ALPHA_ENV", active: true, socials: socials, shareable_socials: shareable_socials)
   post_content = "<p>Just then her head struck against the roof of the hall: in fact she was now more than nine feet high, and she at once took up the little golden key and hurried off to the garden door. The first question of course was, how to get dry again: they had a consultation about this, and after a few minutes it seemed quite natural to Alice to find herself talking familiarly with them, as if she had known them all her life. Indeed, she had quite a long argument with the Lory, who at last turned sulky, and would only say, `I am older than you, and must know better'; and this Alice would not allow without knowing how old it was, and, as the Lory positively refused to tell its age, there was no more to be said.</p><blockquote>Just then her head struck against the roof of the hall: in fact she was now more than nine feet high, and she at once took up the little golden key and hurried off to the garden door. As if she had known them all her life. Indeed, she had quite a long argument with the Lory.</blockquote><blockquote><span style=\"background-color: rgb(255, 255, 255);\">Samuel Marlow</span></blockquote><p><br></p><p><span style=\"color: rgb(50, 53, 55);\">I confess this side of the country was much pleasanter than mine; but yet I had not the least inclination to remove, for as I was fixed in my habitation it became natural to me, and I seemed all the while I was here to be as it were upon a journey, and from home. However, I travelled along the shore she clutched the matron by the arm, and forcing her into a chair by the bedside, was about to speak, wh en looking round, she caught sight of the two old women bending forward in the attitude of eager list eners. They belong to the old gentleman, said Oliver, wringing his hands; \"to the good, kind, old gentle man who took me into his house, and had me nursed, when I was near dying of the fever . Oh, pray send them back; send him back the books and money</span></p><p><br></p><p>This sounded nonsense to Alice, so she said nothing, but set off at once toward the Red Queen. To her surprise, she lost sight of her in a moment, and found herself walking in at the front-door again. For some minutes Alice stood without speaking, looking out in all directions over the country - and a most curious country it was.</p>"
   category_games = Blog::Category.create(name: 'GAMES', background_color: '#4287f5', text_color: '#ffffff')
   category_ttrpg = Blog::Category.create(name: 'TTRPG', background_color: '#4428d1', text_color: '#ffffff')
