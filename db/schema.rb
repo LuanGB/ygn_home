@@ -12,7 +12,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 20_240_127_012_047) do
+ActiveRecord::Schema[7.1].define(version: 20_240_228_005_447) do
   # These are extensions that must be enabled in order to support this database
   enable_extension 'plpgsql'
 
@@ -119,6 +119,14 @@ ActiveRecord::Schema[7.1].define(version: 20_240_127_012_047) do
     t.datetime 'updated_at', null: false
   end
 
+  create_table 'blog_configs', force: :cascade do |t|
+    t.string 'name'
+    t.boolean 'default'
+    t.jsonb 'json_attributes'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+  end
+
   create_table 'blog_post_tags', force: :cascade do |t|
     t.bigint 'post_id', null: false
     t.bigint 'tag_id', null: false
@@ -167,6 +175,14 @@ ActiveRecord::Schema[7.1].define(version: 20_240_127_012_047) do
     t.index %w[resource_type resource_id], name: 'index_roles_on_resource'
   end
 
+  create_table 'site_configs', force: :cascade do |t|
+    t.string 'name'
+    t.boolean 'active'
+    t.jsonb 'json_attributes'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+  end
+
   create_table 'urids', force: :cascade do |t|
     t.string 'resource_type', null: false
     t.bigint 'resource_id', null: false
@@ -201,6 +217,7 @@ ActiveRecord::Schema[7.1].define(version: 20_240_127_012_047) do
     t.datetime 'created_at', null: false
     t.datetime 'updated_at', null: false
     t.datetime 'confirmed_at'
+    t.datetime 'locked_at'
     t.index ['email'], name: 'index_users_on_email', unique: true
     t.index ['reset_password_token'], name: 'index_users_on_reset_password_token', unique: true
   end

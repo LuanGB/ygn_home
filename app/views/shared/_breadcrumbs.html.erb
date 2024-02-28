@@ -1,20 +1,14 @@
 <div class="nk-gap-1"></div>
 <div class="container">
   <ul class="nk-breadcrumbs">
+    <% breadcrumbs.each do |breadcrumb| %>
 
+      <li><a href="<%= breadcrumb.path %>"><%= breadcrumb.name %></a></li>
+      <li><span class="fa fa-angle-right"></span></li>
 
-    <li><a href="index.html">Home</a></li>
-
-
-    <li><span class="fa fa-angle-right"></span></li>
-
-    <li><a href="#">Blog</a></li>
-
-
-    <li><span class="fa fa-angle-right"></span></li>
+    <%end%>
 
     <li><span><%= page_config[:page_title] %></span></li>
-
   </ul>
 </div>
 <div class="nk-gap-1"></div>

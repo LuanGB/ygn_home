@@ -5,20 +5,35 @@ class BlogController < ApplicationController
     http_basic_authenticate_with name: ENV.fetch('BASIC_AUTH_NAME'), password: ENV.fetch('BASIC_AUTH_PASSWORD')
   end
 
+  def index
+    @blog_posts = Blog::Post.published.page(params.fetch(:page, 1)).per(10)
+
+    if params.fetch(:page, 1) == 1
+      curret_page_posts_ids = @blog_posts.map(&:id)
+      @highlights = Blog::Category.all.filter_map do |c|
+        posts = c.posts.left_joins(:comments_posts).where.not(id: curret_page_posts_ids).published.order('count(blog_comment_posts.id) DESC').group(:id).limit(3).to_a
+        next unless posts.present?
+
+        { category: c.name, posts: posts }
+      end
+    else
+      @highlights = []
+    end
+  end
+
   private
 
   def resource_stylesheets
     super + ['blog']
   end
 
-  def page_config
-    super.merge(page_title: 'The YGN Blog')
+  def set_page_config
+    super
+    add_page_config(:page_title, 'The YGN Blog')
   end
 
-  def page_content
-    super.merge(
-      top_3_recent: Blog::Post.first(5),
-      root_path: '/blog'
-    )
+  def set_page_content
+    super
+    add_page_content(:top_3_recent, Blog::Post.first(5))
   end
 end

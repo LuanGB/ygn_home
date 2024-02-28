@@ -1,0 +1,121 @@
+<div class="col-lg-8">
+  <div class="nk-tabs">
+    <ul class="nav nav-tabs nav-tabs-fill" role="tablist">
+      <% @highlights.each.with_index do |h, i| %>
+        <li class="nav-item">
+          <a class="nav-link<%= i.zero? ? ' active' : '' %>" href="#tabs-1-<%= i + 1 %>" role="tab" data-toggle="tab"><%= h[:category] %></a>
+        </li>
+      <%end%>
+    </ul>
+    <div class="tab-content">
+      <% @highlights.each.with_index do |h, i| %>
+        <div role="tabpanel" class="tab-pane fade<%= i.zero? ? ' show active' : '' %>" id="tabs-1-<%= i + 1 %>">
+          <div class="nk-gap"></div>
+          <% first_highlight = h[:posts].shift %>
+          <div class="nk-blog-post nk-blog-post-border-bottom">
+            <a href="/<%= first_highlight.uid %>" class="nk-post-img">
+              <img src="<%= first_highlight.cover_path %>" alt="<%= first_highlight.title %> image">
+              <div class="nk-post-categories">
+                <% first_highlight.categories.each do |category| %>
+                  <span class="bg-main" style="
+                    background-color: <%= category.background_color %>;
+                    color: <%= category.text_color %>
+                  ">
+                    <%= category.name %>
+                  </span>
+                <% end %>
+              </div>
+            </a>
+            <div class="nk-gap-1"></div>
+            <h2 class="nk-post-title h4"><a href="/<%= first_highlight.uid %>"><%= first_highlight.title %></a></h2>
+            <div class="nk-post-date mt-10 mb-10">
+              <span class="fa fa-calendar"></span> <%= first_highlight.published_at %>
+              <span class="fa fa-comments"></span> <%= first_highlight.comments.count %> comments
+            </div>
+            <div class="nk-post-text">
+              <p><%= first_highlight.description %></p>
+            </div>
+          </div>
+
+          <% h[:posts].each do |post| %>
+            <div class="nk-blog-post nk-blog-post-border-bottom">
+              <div class="row vertical-gap">
+                <div class="col-lg-3 col-md-5">
+                  <a href="/<%= post.uid %>" class="nk-post-img">
+                    <img src="<%= post.thumbnail_path %>" alt="<%= post.title %> image">
+                      
+                    <div class="nk-post-categories">
+                      <% post.categories.each do |category| %>
+                        <span class="bg-main" style="
+                          background-color: <%= category.background_color %>;
+                          color: <%= category.text_color %>
+                        ">
+                          <%= category.name %>
+                        </span>
+                      <% end %>
+                    </div>
+                      
+                  </a>
+                </div>
+                <div class="col-lg-9 col-md-7">
+                  <h2 class="nk-post-title h4"><a href="/<%= post.uid %>"><%= post.title %></a></h2>
+                  <div class="nk-post-date mt-10 mb-10">
+                    <span class="fa fa-calendar"></span> <%= post.published_at %>
+                    <span class="fa fa-comments"></span> <%= post.comments.count %> comments
+                  </div>
+                  <div class="nk-post-text">
+                    <p><%= post.description %></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <%end%>
+          <div class="nk-gap"></div>
+        </div>
+      <%end%>
+    </div>
+  </div>
+  <div class="nk-blog-grid">
+    <div class="row">
+      <% @blog_posts.each do |blog_post| %>
+        <div class="col-md-6">
+          <div class="nk-blog-post">
+            <a href="/<%= blog_post.uid %>" class="nk-post-img">
+              <img src="<%= blog_post.thumbnail_path %>" alt="Smell magic in the air. Or maybe barbecue">
+              <div class="nk-post-categories">
+                <% blog_post.categories.each do |category| %>
+                  <span class="bg-main" style="
+                    background-color: <%= category.background_color %>;
+                    color: <%= category.text_color %>
+                  ">
+                    <%= category.name %>
+                  </span>
+                <% end %>
+              </div>
+              <span class="nk-post-comments-count"><%= blog_post.comments.count %></span>
+            </a>
+            <div class="nk-gap"></div>
+            <h2 class="nk-post-title h4"><a href="/<%= blog_post.uid %>"><%= blog_post.title %></a></h2>
+            <div class="nk-post-by">
+              <% blog_post.authors.each do |author| %>
+                <a href="#">
+                  <img src="<%= author.avatar_path %>" alt="<%= author.name %> author image" class="rounded-circle" width="35">
+                </a>
+                by <a href="#"><%= author.name %></a>
+              <% end %> at <%= I18n.l blog_post.published_at, format: :short %>
+            </div>
+            <div class="nk-gap"></div>
+            <div class="nk-post-text">
+              <p><%= blog_post.description %></p>
+            </div>
+            <div class="nk-gap"></div>
+            <a href="/<%= blog_post.uid %>" class="nk-btn nk-btn-rounded nk-btn-color-dark-3 nk-btn-hover-color-main-1">Read More</a>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <div class="nk-pagination nk-pagination-center">
+      <%= paginate @blog_posts %>
+    </div>
+  </div>
+</div>
