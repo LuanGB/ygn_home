@@ -118,7 +118,7 @@ Rails.application.configure do
     config.lograge.ignore_actions = ["Rails::HealthController#show"]
     config.lograge.custom_options = lambda do |event|
       {
-          application: Rails.application.class.parent_name,
+          application: Rails.application.class,
           host: event.payload[:host],
           rails_env: Rails.env,
 
