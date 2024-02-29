@@ -4,13 +4,16 @@ module Blog
   class PostsController < BlogController
     # GET /blog/posts or /blog/posts.json
     def index
-      @blog_posts = if params[:search].present?
-                      add_breadcrumb('Blog', '/blog')
-                      add_page_config(:page_title, "# Search results for: \"#{params[:search]}\"")
-                      Blog::Post.published.where('title like :search_term or content like :search_term', search_term: "%#{params[:search]}%").page(params.fetch(:page, 1)).per(10)
-                    else
-                      Blog::Post.published.page(params.fetch(:page, 1)).per(10)
-                    end
+      scope = Blog::Post.published
+      scope = scope.where('title like :search_term or content like :search_term', search_term: "%#{params[:search]}%") if params[:search].present?
+      scope = scope.where('title like :search_term or content like :search_term', search_term: "%#{params[:search]}%") if params[:search].present?
+      scope = scope.where('title like :search_term or content like :search_term', search_term: "%#{params[:search]}%") if params[:search].present?
+      @blog_posts.order(published_at: :desc).page(params.fetch(:page, 1)).per(10)
+
+      if params[:search].present? || params[:category].present? || params[:tag].present?
+        add_breadcrumb('Blog', '/blog')
+        add_page_config(:page_title, "# Search results for: \"#{params[:search]}\"")
+      end
     end
 
     # GET /blog/posts/1 or /blog/posts/1.json

@@ -16,8 +16,7 @@ module Blog
     has_many :post_tags, class_name: Blog::PostTag.to_s, dependent: :destroy
     has_many :tags, through: :post_tags, class_name: Blog::Tag.to_s
 
-    has_many :comments_posts, class_name: Blog::CommentPost.to_s, dependent: :destroy
-    has_many :comments, through: :comments_posts, class_name: Blog::Comment.to_s
+    has_many :comments, inverse_of: :resource, class_name: Blog::Comment.to_s, dependent: :destroy
 
     has_many :urids, inverse_of: :resource, dependent: :destroy
 
