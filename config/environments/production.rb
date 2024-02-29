@@ -112,4 +112,7 @@ Rails.application.configure do
   # config.host_authorization = { exclude: ->(request) { request.path == "/up" } }
 
   config.secret_key_base = ENV.fetch('SECRET_KEY_BASE', nil)
+
+  config.lograge.enabled = true
+  config.lograge.ignore_actions = ["health_check/health_check#index"]
 end
