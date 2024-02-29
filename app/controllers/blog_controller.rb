@@ -11,7 +11,7 @@ class BlogController < ApplicationController
     if params.fetch(:page, 1) == 1
       curret_page_posts_ids = @blog_posts.map(&:id)
       @highlights = Blog::Category.all.filter_map do |c|
-        posts = c.posts.left_joins(:comments_posts).where.not(id: curret_page_posts_ids).published.order('count(blog_comment_posts.id) DESC').group(:id).limit(3).to_a
+        posts = c.posts.left_joins(:comments).published.where.not(id: curret_page_posts_ids).order('count(blog_comments.id) DESC').group(:id).limit(3).to_a
         next unless posts.present?
 
         { category: c.name, posts: posts }
