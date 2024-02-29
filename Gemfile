@@ -16,6 +16,8 @@ gem 'sprockets-rails'
 gem 'stimulus-rails'
 gem 'turbo-rails'
 
+gem 'lograge'
+
 gem 'activeadmin'
 gem 'activeadmin_dark_color_scheme'
 gem 'active_admin_datetimepicker'
