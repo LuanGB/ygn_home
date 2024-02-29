@@ -34,6 +34,6 @@ class BlogController < ApplicationController
 
   def set_page_content
     super
-    add_page_content(:top_3_recent, Blog::Post.first(3))
+    add_page_content(:top_3_recent, Blog::Post.last(3))
   end
 end
