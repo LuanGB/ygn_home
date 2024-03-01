@@ -113,7 +113,7 @@ Rails.application.configure do
 
   config.secret_key_base = ENV.fetch('SECRET_KEY_BASE', nil)
 
-  if ENV.fetch('MINIFY_LOGS', nil)
+  if ENV.fetch('MINIFY_LOGS', 'false') == 'true'
     config.lograge.enabled = true
     config.lograge.ignore_actions = ["Rails::HealthController#show"]
     config.lograge.custom_options = lambda do |event|

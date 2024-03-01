@@ -3,7 +3,7 @@
     <ul class="nav nav-tabs nav-tabs-fill" role="tablist">
       <% @highlights.each.with_index do |h, i| %>
         <li class="nav-item">
-          <a class="nav-link<%= i.zero? ? ' active' : '' %>" href="#tabs-1-<%= i + 1 %>" role="tab" data-toggle="tab"><%= h[:category] %></a>
+          <a class="nav-link<%= i.zero? ? ' active' : '' %>" href="#tabs-1-<%= i + 1 %>" role="tab" data-toggle="tab"><%= h[:category].name %></a>
         </li>
       <%end%>
     </ul>
@@ -45,14 +45,12 @@
                     <img src="<%= post.thumbnail_path %>" alt="<%= post.title %> image">
                       
                     <div class="nk-post-categories">
-                      <% post.categories.each do |category| %>
-                        <span class="bg-main" style="
-                          background-color: <%= category.background_color %>;
-                          color: <%= category.text_color %>
-                        ">
-                          <%= category.name %>
-                        </span>
-                      <% end %>
+                      <span class="bg-main" style="
+                        background-color: <%= h[:category].background_color %>;
+                        color: <%= h[:category].text_color %>
+                      ">
+                        <%= h[:category].name %>
+                      </span>
                     </div>
                       
                   </a>

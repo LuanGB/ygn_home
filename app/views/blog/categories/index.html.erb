@@ -1,14 +1,15 @@
-<p style="color: green"><%= notice %></p>
-
-<h1>Categories</h1>
-
-<div id="blog_categories">
-  <% @blog_categories.each do |blog_category| %>
-    <%= render blog_category %>
-    <p>
-      <%= link_to "Show this category", blog_category %>
-    </p>
-  <% end %>
+<div class="col-lg-8">
+  <div class="nk-blog-grid">
+    <div class="row">
+        <% @blog_categories.each do |category| %>
+          <a href="/blog/categories/<%= category.name %>" class="nk-btn nk-btn-x4 nk-btn-rounded" style="
+            background-color: <%= category.background_color %>;
+            color: <%= category.text_color %>;
+            margin: 10px
+          ">
+            <strong><%= category.name %></strong>
+          </a>
+        <% end %>
+    </div>
+  </div>
 </div>
-
-<%= link_to "New category", new_blog_category_path %>

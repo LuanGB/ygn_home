@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 class BlogController < ApplicationController
-  if Rails.env.production?
-    http_basic_authenticate_with name: ENV.fetch('BASIC_AUTH_NAME'), password: ENV.fetch('BASIC_AUTH_PASSWORD')
+  if ENV.fetch('BASIC_AUTH_NAME', nil) && ENV.fetch('BASIC_AUTH_PASSWORD', nil)
+    http_basic_authenticate_with name: ENV.fetch('BASIC_AUTH_NAME', nil), password: ENV.fetch('BASIC_AUTH_PASSWORD', nil)
   end
 
   def index
@@ -10,11 +10,12 @@ class BlogController < ApplicationController
 
     if params.fetch(:page, 1) == 1
       curret_page_posts_ids = @blog_posts.map(&:id)
-      @highlights = Blog::Category.all.filter_map do |c|
-        posts = c.posts.left_joins(:comments).published.where.not(id: curret_page_posts_ids).order('count(blog_comments.id) DESC').group(:id).limit(3).to_a
+      @highlights = Blog::Category.left_joins(:posts).order('max(blog_posts.published_at
+      ) DESC NULLS LAST').group(:id).first(6).filter_map do |c|
+        posts = c.posts.left_joins(:comments).published.where.not(id: curret_page_posts_ids).order('count(blog_comments.id) DESC').order(published_at: :desc).group(:id).first(3).to_a
         next unless posts.present?
 
-        { category: c.name, posts: posts }
+        { category: c, posts: posts }
       end
     else
       @highlights = []

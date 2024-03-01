@@ -29,10 +29,10 @@ Rails.application.routes.draw do
   get '/blog', to: 'blog#index'
   namespace :blog do
     resources :authors, only: %i[show index]
-    resources :categories, only: %i[index]
+    resources :categories, only: %i[index show]
     resources :comments, only: %i[create update destroy]
     resources :posts, only: %i[index show]
-    resources :tags, only: %i[index]
+    resources :tags, only: %i[index show]
   end
 
   namespace :site do
