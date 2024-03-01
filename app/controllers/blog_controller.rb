@@ -10,8 +10,7 @@ class BlogController < ApplicationController
 
     if params.fetch(:page, 1) == 1
       curret_page_posts_ids = @blog_posts.map(&:id)
-      @highlights = Blog::Category.left_joins(:posts).order('max(blog_posts.published_at
-      ) DESC NULLS LAST').group(:id).first(6).filter_map do |c|
+      @highlights = Blog::Category.left_joins(:posts).order('max(blog_posts.published_at) DESC NULLS LAST').group(:id).first(6).filter_map do |c|
         posts = c.posts.left_joins(:comments).published.where.not(id: curret_page_posts_ids).order('count(blog_comments.id) DESC').order(published_at: :desc).group(:id).first(3).to_a
         next unless posts.present?
 
