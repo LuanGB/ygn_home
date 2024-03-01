@@ -6,6 +6,16 @@
           <div class="nk-blog-post">
             <a href="/<%= blog_post.uid %>" class="nk-post-img">
               <img src="<%= blog_post.thumbnail_path %>" alt="Smell magic in the air. Or maybe barbecue">
+              <div class="nk-post-categories">
+                <% blog_post.categories.each do |category| %>
+                  <span class="bg-main" style="
+                    background-color: <%= category.background_color %>;
+                    color: <%= category.text_color %>
+                  ">
+                    <%= category.name %>
+                  </span>
+                <% end %>
+              </div>
               <span class="nk-post-comments-count"><%= blog_post.comments.count %></span>
             </a>
             <div class="nk-gap"></div>
